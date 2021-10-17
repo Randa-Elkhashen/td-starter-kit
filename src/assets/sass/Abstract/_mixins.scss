@@ -1,0 +1,25 @@
+/***Responsive Mixin***/
+
+$breakpoints: (
+    "phone": 375,
+    "phablet": 766,
+    "ipad": 1023,
+    "ipad-pro": 1024,
+    "desktop": 1366,
+    "desktop-wide": 1920,
+);
+
+@mixin mq($width, $type: max) {
+    @if map_has_key($breakpoints, $width){
+        $width: map_get($breakpoints, $width);
+    }
+
+    @if $type == max {
+        $width: $width + 1px;
+    }
+
+    @media only screen and (#{$type}-width: $width){
+        @content;
+    }
+
+}
